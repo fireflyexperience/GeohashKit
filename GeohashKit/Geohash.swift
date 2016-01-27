@@ -9,7 +9,18 @@
 //  Distributed under the MIT License
 //
 
-public class Geohash {
+import CoreLocation
+
+public class Geohash
+{
+    public static func encode(location location: CLLocation, _ precision: Int? = nil) -> String {
+        return geohashbox(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude, precision)!.hash
+    }
+    
+    public static func encode(coordinate coordinate: CLLocationCoordinate2D, _ precision: Int? = nil) -> String {
+        return geohashbox(latitude: coordinate.latitude, longitude: coordinate.longitude, precision)!.hash
+    }
+    
     // - MARK: Public
     public static func encode(latitude latitude: Double, longitude: Double, _ precision: Int? = nil) -> String {
         return geohashbox(latitude: latitude, longitude: longitude, precision)!.hash
