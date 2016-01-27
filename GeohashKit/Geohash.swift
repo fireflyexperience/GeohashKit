@@ -30,6 +30,11 @@ public class Geohash
         return geohashbox(hash)?.point
     }
     
+    public static func decodeCoordinate(hash: String) -> (CLLocationCoordinate2D)? {
+        guard let (latitude, longitude) = geohashbox(hash)?.point else { return nil }
+        return CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
+    }
+    
     public static func neighbors(centerHash: String) -> [String]? {
         // neighbor precision *must* be them same as center'ed bounding box.
         let precision = centerHash.characters.count
